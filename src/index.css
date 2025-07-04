@@ -2,76 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern Portfolio Design System */
+/* Modern Portfolio Design System - Madison Inspired */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Global resets for smooth full-page experience */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  scroll-behavior: smooth;
+}
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Force light theme - Madison inspired */
+    --background: 44 20% 98%;           /* Lighter cream #FAF8F5 */
+    --foreground: 20 14.3% 4.1%;       /* Deep black text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 44 20% 98%;                /* Light cream cards */
+    --card-foreground: 20 14.3% 4.1%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 44 20% 98%;
+    --popover-foreground: 20 14.3% 4.1%;
 
-    --primary: 213 94% 68%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 16 100% 60%;             /* Orange */
+    --primary-foreground: 44 20% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 44 15% 95%;            /* Very light beige */
+    --secondary-foreground: 20 14.3% 4.1%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 44 15% 95%;
+    --muted-foreground: 25 5.3% 44.7%;
 
-    --accent: 213 94% 68%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 16 100% 60%;
+    --accent-foreground: 44 20% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 44 20% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 213 94% 68%;
+    --border: 44 15% 90%;               /* Light borders */
+    --input: 44 15% 90%;
+    --ring: 16 100% 60%;
 
     --radius: 0.5rem;
-
-    /* Portfolio specific colors */
-    --portfolio-dark: 217 33% 17%;
-    --portfolio-blue: 213 94% 68%;
-    --portfolio-gradient-start: 217 33% 17%;
-    --portfolio-gradient-end: 224 71% 4%;
   }
 
+  /* REMOVE DARK MODE COMPLETELY */
   .dark {
-    --background: 217 33% 17%;
-    --foreground: 210 40% 98%;
-
-    --card: 217 33% 17%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 217 33% 17%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 213 94% 68%;
-    --primary-foreground: 217 33% 17%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 213 94% 68%;
-    --accent-foreground: 217 33% 17%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 213 94% 68%;
+    /* Override dark mode to light */
+    --background: 44 20% 98%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 44 20% 98%;
+    --card-foreground: 20 14.3% 4.1%;
   }
 }
 
@@ -81,31 +70,44 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     font-optical-sizing: auto;
+    background: #FAF8F5 !important;
+    color: #0A0A0A !important;
+    margin: 0;
+    padding: 0;
   }
 
   html {
     scroll-behavior: smooth;
   }
+
+  /* Smooth section transitions */
+  section {
+    background-color: transparent !important;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * {
+    border-color: rgb(44 15% 85%) !important;
+  }
 }
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent;
   }
 
   .glass-card {
-    @apply backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl shadow-2xl;
+    @apply backdrop-blur-lg bg-white/80 border border-orange-200 rounded-xl shadow-2xl transition-all duration-500 hover:shadow-orange-500/20;
   }
 
   .hero-gradient {
-    background: radial-gradient(circle at 20% 50%, hsl(var(--portfolio-gradient-start)) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, hsl(var(--portfolio-gradient-end)) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, hsl(var(--portfolio-blue)) 0%, transparent 70%),
-                linear-gradient(135deg, hsl(var(--portfolio-gradient-start)) 0%, hsl(var(--portfolio-gradient-end)) 100%);
+    background: radial-gradient(circle at 20% 50%, hsl(var(--portfolio-cream)) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, hsl(var(--portfolio-beige)) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, hsl(var(--portfolio-orange)) 0%, transparent 70%),
+                linear-gradient(135deg, hsl(var(--portfolio-cream)) 0%, hsl(var(--portfolio-beige)) 100%);
   }
 
   .floating-animation {
@@ -113,15 +115,35 @@
   }
 
   .skill-bar {
-    @apply relative overflow-hidden rounded-full bg-gray-200 h-2;
+    @apply relative overflow-hidden rounded-full bg-orange-100 h-2 transition-all duration-500;
   }
 
   .skill-progress {
-    @apply h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-1000 ease-out;
+    @apply h-full bg-gradient-to-r from-orange-500 to-orange-600 rounded-full transition-all duration-1000 ease-out;
   }
 
   .glow-effect {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3), 0 0 40px rgba(255, 107, 53, 0.1);
+    transition: box-shadow 0.5s ease-in-out;
+  }
+
+  /* Enhanced smooth scrolling and spacing */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  /* Madison-inspired card styles */
+  .madison-card {
+    @apply bg-white/90 backdrop-blur-sm border border-orange-200 rounded-xl shadow-lg hover:shadow-orange-500/20 transition-all duration-500;
+  }
+
+  .madison-button {
+    @apply bg-black text-white hover:bg-orange-500 hover:text-white transition-all duration-500 font-medium px-6 py-3 rounded-lg;
+  }
+
+  .madison-accent {
+    @apply text-orange-500 hover:text-orange-600 transition-colors duration-300;
   }
 }
 
@@ -166,10 +188,10 @@
 
 @keyframes glowPulse {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
   }
   50% {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 40px rgba(147, 51, 234, 0.3);
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.6), 0 0 40px rgba(255, 107, 53, 0.3);
   }
 }
 
@@ -187,4 +209,113 @@
 
 .animate-glow-pulse {
   animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Enhanced section spacing and transitions */
+section + section {
+  margin-top: 0;
+}
+
+/* Smooth hover transitions for all interactive elements */
+button, .card, .glass-card, .madison-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Improved smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Better text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Madison-inspired section backgrounds */
+.section-cream {
+  background: linear-gradient(135deg, hsl(var(--portfolio-cream)) 0%, hsl(var(--portfolio-beige)) 100%);
+}
+
+.section-white {
+  background: linear-gradient(135deg, hsl(var(--portfolio-warm-white)) 0%, hsl(var(--portfolio-cream)) 100%);
+}
+
+.section-beige {
+  background: linear-gradient(135deg, hsl(var(--portfolio-beige)) 0%, hsl(var(--portfolio-cream)) 100%);
+}
+
+/* Contact section Madison-inspired styles */
+.contact-card {
+  @apply bg-gradient-to-br from-white via-orange-50 to-white border border-orange-200 hover:border-orange-300 transition-all duration-700 backdrop-blur-sm;
+  @apply hover:shadow-2xl hover:shadow-orange-500/20 transform hover:scale-105 hover:rotate-1;
+}
+
+.contact-input {
+  @apply bg-orange-50/50 border-orange-200 hover:border-orange-300 focus:border-orange-400 transition-all duration-500;
+  @apply hover:bg-orange-100/50 focus:bg-orange-100/70 text-gray-800;
+}
+
+.contact-button {
+  @apply bg-black text-white hover:bg-orange-500 hover:text-white;
+  @apply transition-all duration-500 transform hover:scale-110 hover:shadow-lg hover:shadow-orange-500/40 hover:rotate-2;
+}
+
+.contact-icon {
+  @apply text-orange-500 hover:text-orange-600 transition-all duration-500 transform hover:scale-125 hover:rotate-12;
+}
+
+.social-link {
+  @apply bg-orange-50 hover:bg-orange-100 border border-orange-200 hover:border-orange-300;
+  @apply transition-all duration-500 transform hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-orange-500/20;
+}
+
+.contact-text {
+  @apply text-gray-700 hover:text-gray-800 transition-colors duration-300;
+}
+
+.contact-heading {
+  @apply text-black hover:text-gray-800 transition-colors duration-300;
+}
+
+.contact-label {
+  @apply text-gray-600 hover:text-gray-700 transition-colors duration-300;
+}
+
+.contact-placeholder {
+  @apply placeholder:text-gray-500;
+}
+
+.contact-form-container {
+  @apply bg-white/90 backdrop-blur-sm;
+}
+
+.contact-info-container {
+  @apply bg-white/90 backdrop-blur-sm;
+}
+
+.social-links-container {
+  @apply bg-white/90 backdrop-blur-sm;
+}
+
+/* NUCLEAR OPTION - Force light theme everywhere */
+html {
+  background: #FAF8F5 !important;
+}
+
+body, #root, main, .app {
+  background: #FAF8F5 !important;
+}
+
+/* Kill any dark backgrounds */
+.bg-slate-900, .bg-slate-800, .bg-blue-900, .bg-gray-900 {
+  background: #FAF8F5 !important;
+}
+
+/* Force header to be light if it exists */
+header {
+  background: rgba(250, 248, 245, 0.95) !important;
+  backdrop-filter: blur(8px);
 }
