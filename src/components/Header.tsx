@@ -30,7 +30,7 @@ const Header = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/public/cv/Sewmi_Senarath_Resume.pdf';
+    link.href = '/cv/Sewmi_Senarath_Resume.pdf';
     link.download = 'Sewmi_Senarath_Resume.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
