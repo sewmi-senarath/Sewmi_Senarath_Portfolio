@@ -1,68 +1,76 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Code2, Zap } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Code2, Search, Filter, TrendingUp, Folder, Star, Award, Target } from 'lucide-react';
 
 const Skills = () => {
-  const [visibleBars, setVisibleBars] = useState<Set<string>>(new Set());
+  const [visibleBars, setVisibleBars] = useState(new Set());
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [hoveredSkill, setHoveredSkill] = useState(null);
 
   const skillCategories = [
     {
       title: 'Programming Languages',
       icon: '💻',
       skills: [
-        { name: 'Java', level: 90, proficiency: 'Proficient' },
-        { name: 'JavaScript', level: 88, proficiency: 'Proficient' },
-        { name: 'PHP', level: 75, proficiency: 'Intermediate' },
-        { name: 'Kotlin', level: 80, proficiency: 'Intermediate' },
-        { name: 'Python', level: 40, proficiency: 'Beginner' },
-        { name: 'Dart', level: 35, proficiency: 'Beginner' },
-        { name: 'Golang', level: 65, proficiency: 'Beginner' },
+        { name: 'Java', level: 90, proficiency: 'Expert', trending: true, description: 'Enterprise applications, Spring ecosystem, microservices architecture' },
+        { name: 'JavaScript', level: 88, proficiency: 'Expert', trending: true, description: 'ES6+, TypeScript, Node.js, React, Vue.js' },
+        { name: 'PHP', level: 75, proficiency: 'Proficient', trending: false, description: 'Laravel, Symfony, REST APIs, web development' },
+        { name: 'Kotlin', level: 80, proficiency: 'Proficient', trending: true, description: 'Android development, coroutines, modern syntax' },
+        { name: 'Python', level: 40, proficiency: 'Intermediate', trending: true, description: 'Data analysis, automation, Django basics' },
+        { name: 'Dart', level: 35, proficiency: 'Beginner', trending: true, description: 'Flutter development, cross-platform mobile apps' },
+        { name: 'Golang', level: 65, proficiency: 'Intermediate', trending: true, description: 'Microservices, concurrent programming, REST APIs' },
       ]
     },
     {
       title: 'Web Development',
       icon: '🌐',
       skills: [
-        { name: 'MERN Stack', level: 85, proficiency: 'Proficient' },
-        { name: 'SpringBoot', level: 80, proficiency: 'Intermediate' },
-        { name: 'HTML/CSS', level: 92, proficiency: 'Expert' },
-        { name: 'Tailwind CSS', level: 88, proficiency: 'Proficient' },
-        { name: 'Bootstrap', level: 85, proficiency: 'Proficient' },
+        { name: 'MERN Stack', level: 85, proficiency: 'Expert', trending: true, description: 'MongoDB, Express, React, Node.js full-stack development' },
+        { name: 'SpringBoot', level: 80, proficiency: 'Proficient', trending: true, description: 'REST APIs, microservices, Spring Security, JPA' },
+        { name: 'HTML/CSS', level: 92, proficiency: 'Expert', trending: false, description: 'Semantic HTML, CSS Grid/Flexbox, responsive design' },
+        { name: 'Tailwind CSS', level: 88, proficiency: 'Expert', trending: true, description: 'Utility-first CSS, component design, dark mode' },
+        { name: 'Bootstrap', level: 85, proficiency: 'Proficient', trending: false, description: 'Responsive frameworks, component library' },
       ]
     },
     {
       title: 'Mobile Development',
       icon: '📱',
       skills: [
-        { name: 'Android', level: 40, proficiency: 'Beginner' },
-        { name: 'Flutter', level: 35, proficiency: 'Beginner' },
+        { name: 'Android', level: 40, proficiency: 'Intermediate', trending: true, description: 'Native Android, Kotlin, Material Design' },
+        { name: 'Flutter', level: 35, proficiency: 'Beginner', trending: true, description: 'Cross-platform development, Dart, widget system' },
       ]
     },
     {
       title: 'Testing & DevOps',
       icon: '🔧',
       skills: [
-        { name: 'Selenium', level: 75, proficiency: 'Intermediate' },
-        { name: 'Cypress', level: 70, proficiency: 'Intermediate' },
-        { name: 'Postman', level: 85, proficiency: 'Proficient' },
-        { name: 'JUnit', level: 80, proficiency: 'Intermediate' },
-        { name: 'Docker', level: 75, proficiency: 'Intermediate' },
-        { name: 'Kubernetes', level: 65, proficiency: 'Beginner' },
-        { name: 'Git/GitHub', level: 90, proficiency: 'Proficient' },
+        { name: 'Selenium', level: 75, proficiency: 'Proficient', trending: false, description: 'Web automation, test frameworks, CI/CD integration' },
+        { name: 'Cypress', level: 70, proficiency: 'Proficient', trending: true, description: 'E2E testing, modern test automation, debugging' },
+        { name: 'Postman', level: 85, proficiency: 'Expert', trending: false, description: 'API testing, collection management, automation' },
+        { name: 'JUnit', level: 80, proficiency: 'Proficient', trending: false, description: 'Unit testing, test-driven development, mocking' },
+        { name: 'Docker', level: 75, proficiency: 'Proficient', trending: true, description: 'Containerization, multi-stage builds, orchestration' },
+        { name: 'Kubernetes', level: 65, proficiency: 'Intermediate', trending: true, description: 'Container orchestration, deployments, services' },
+        { name: 'Git/GitHub', level: 90, proficiency: 'Expert', trending: false, description: 'Version control, branching strategies, collaboration' },
       ]
     },
     {
       title: 'Database Management',
       icon: '🗄️',
       skills: [
-        { name: 'MySQL', level: 85, proficiency: 'Proficient' },
-        { name: 'PostgreSQL', level: 40, proficiency: 'Beginner' },
-        { name: 'MongoDB', level: 82, proficiency: 'Proficient' },
+        { name: 'MySQL', level: 85, proficiency: 'Expert', trending: false, description: 'Relational databases, query optimization, indexing' },
+        { name: 'PostgreSQL', level: 40, proficiency: 'Beginner', trending: true, description: 'Advanced SQL, JSON support, performance tuning' },
+        { name: 'MongoDB', level: 82, proficiency: 'Proficient', trending: true, description: 'NoSQL, aggregation pipelines, schema design' },
       ]
     }
   ];
 
+  const categories = ['All', ...skillCategories.map(cat => cat.title)];
+
+  // Intersection observer for animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -77,7 +85,7 @@ const Skills = () => {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     const skillCards = document.querySelectorAll('[data-category]');
@@ -86,140 +94,236 @@ const Skills = () => {
     return () => observer.disconnect();
   }, []);
 
-  const getProficiencyColor = (proficiency: string) => {
-    switch (proficiency) {
-      case 'Expert': return 'bg-green-500/20 text-green-600 border-green-500/30 hover:bg-green-400/30 hover:text-green-700 hover:border-green-400/50';
-      case 'Proficient': return 'bg-orange-500/20 text-orange-600 border-orange-500/30 hover:bg-orange-400/30 hover:text-orange-700 hover:border-orange-400/50';
-      case 'Intermediate': return 'bg-yellow-500/20 text-yellow-600 border-yellow-500/30 hover:bg-yellow-400/30 hover:text-yellow-700 hover:border-yellow-400/50';
-      case 'Beginner': return 'bg-blue-500/20 text-blue-600 border-blue-500/30 hover:bg-blue-400/30 hover:text-blue-700 hover:border-blue-400/50';
-      default: return 'bg-gray-500/20 text-gray-600 border-gray-500/30';
-    }
+  const getProficiencyConfig = (proficiency) => {
+    const configs = {
+      'Expert': { 
+        color: 'bg-emerald-500/20 text-emerald-700 border-emerald-500/30 hover:bg-emerald-400/30 dark:bg-emerald-500/20 dark:text-emerald-400 dark:border-emerald-500/30', 
+        icon: <Award className="w-3 h-3" />,
+        gradient: 'from-emerald-400 to-emerald-600'
+      },
+      'Proficient': { 
+        color: 'bg-orange-500/20 text-orange-700 border-orange-500/30 hover:bg-orange-400/30 dark:bg-orange-500/20 dark:text-orange-400 dark:border-orange-500/30', 
+        icon: <Target className="w-3 h-3" />,
+        gradient: 'from-orange-400 to-orange-600'
+      },
+      'Intermediate': { 
+        color: 'bg-yellow-500/20 text-yellow-700 border-yellow-500/30 hover:bg-yellow-400/30 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30', 
+        icon: <TrendingUp className="w-3 h-3" />,
+        gradient: 'from-yellow-400 to-yellow-600'
+      },
+      'Beginner': { 
+        color: 'bg-blue-500/20 text-blue-700 border-blue-500/30 hover:bg-blue-400/30 dark:bg-blue-500/20 dark:text-blue-400 dark:border-blue-500/30', 
+        icon: <Star className="w-3 h-3" />,
+        gradient: 'from-blue-400 to-blue-600'
+      }
+    };
+    return configs[proficiency] || configs['Beginner'];
   };
 
-  const getCardGradient = (index: number) => {
-    const gradients = [
-      'from-white via-orange-50 to-white',
-      'from-orange-50 via-white to-orange-50',
-      'from-white via-orange-100 to-white',
-      'from-orange-100 via-white to-orange-50',
-      'from-white via-orange-50 to-orange-100'
-    ];
-    return gradients[index % gradients.length];
-  };
+  const filteredCategories = skillCategories.filter(category => 
+    selectedCategory === 'All' || category.title === selectedCategory
+  ).map(category => ({
+    ...category,
+    skills: category.skills.filter(skill =>
+      skill.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  })).filter(category => category.skills.length > 0);
+
+  const totalSkills = skillCategories.reduce((sum, cat) => sum + cat.skills.length, 0);
+  const averageLevel = Math.round(
+    skillCategories.reduce((sum, cat) => 
+      sum + cat.skills.reduce((skillSum, skill) => skillSum + skill.level, 0), 0
+    ) / totalSkills
+  );
 
   return (
-    <>
-      <section id="skills" className="py-16 bg-gradient-to-b from-orange-100 to-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 right-10 w-64 h-64 bg-orange-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-10 w-80 h-80 bg-orange-100/30 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-50/40 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-orange-400"></div>
-              <Code2 className="w-8 h-8 text-orange-500 mx-4" />
-              <div className="w-12 h-px bg-gradient-to-l from-transparent to-orange-400"></div>
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 transition-all duration-500">
-              Technical Skills
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto mb-8 transition-all duration-500"></div>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-              A comprehensive overview of my technical expertise and proficiency levels across various technologies
-            </p>
+    <section 
+      id="skills" 
+      className="py-20 bg-gradient-to-b from-orange-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden"
+    >
+      {/* Background elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 right-10 w-64 h-64 bg-orange-200/20 dark:bg-orange-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-80 h-80 bg-orange-100/30 dark:bg-orange-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-50/40 dark:bg-orange-500/5 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center mb-8">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-orange-400"></div>
+            <Code2 className="w-8 h-8 text-orange-500 mx-4" />
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-orange-400"></div>
           </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6 transition-all duration-500">
+            Technical Skills
+          </h2>
+          
+          <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto mb-8 transition-all duration-500"></div>
 
-          <div className="grid lg:grid-cols-2 gap-10">
-            {skillCategories.map((category, categoryIndex) => (
-              <Card 
-                key={categoryIndex}
-                data-category={category.title}
-                className={`bg-gradient-to-br ${getCardGradient(categoryIndex)} border-orange-200 hover:border-orange-300 transition-all duration-700 transform hover:scale-110 hover:shadow-2xl hover:shadow-orange-500/20 backdrop-blur-sm group overflow-hidden relative`}
-                style={{
-                  animationDelay: `${categoryIndex * 100}ms`
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-100/0 via-orange-50/50 to-orange-100/0 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                
-                <CardContent className="p-10 relative z-10">
-                  <div className="flex items-center mb-8">
-                    <span className="text-4xl mr-5 transition-all duration-500 group-hover:scale-125">{category.icon}</span>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            A comprehensive overview of my technical expertise and proficiency levels across various technologies
+          </p>
+
+          {/* Search and Filter */}
+          <div className="md:flex-row gap-4 max-w-2xl mx-auto">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search technologies..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-white dark:bg-gray-800 border-orange-200 dark:border-gray-600 rounded-xl"
+              />
+            </div>
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              {categories.map(category => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category)}
+                  className={`whitespace-nowrap transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg'
+                      : 'bg-white dark:bg-gray-800 border-orange-200 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  <Filter className="w-4 h-4 mr-1" />
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Skills Grid - Fixed to 2 columns for better spacing */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {filteredCategories.map((category, categoryIndex) => (
+            <Card 
+              key={categoryIndex}
+              data-category={category.title}
+              className="group relative overflow-hidden bg-white dark:bg-gray-800 border-orange-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 transition-all duration-500 hover:shadow-xl hover:shadow-orange-500/20 transform hover:scale-105 shadow-lg"
+              style={{
+                animationDelay: `${categoryIndex * 150}ms`
+              }}
+            >
+              {/* Subtle hover overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-100/0 via-orange-50/50 to-orange-100/0 dark:from-orange-500/0 dark:via-orange-500/10 dark:to-orange-500/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+              
+              <CardContent className="p-8 relative z-10">
+                {/* Category Header - Fixed spacing */}
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl shadow-lg group-hover:scale-110 transition-all duration-500">
+                      <span className="text-2xl filter drop-shadow-sm">{category.icon}</span>
+                    </div>
                     <div>
-                      <h3 className="text-2xl font-semibold text-black group-hover:text-gray-800 transition-colors duration-500">{category.title}</h3>
-                      <div className="w-16 h-0.5 bg-gradient-to-r from-orange-400 to-transparent mt-2 group-hover:w-24 transition-all duration-500"></div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white transition-colors duration-500">
+                        {category.title}
+                      </h3>
+                      <div className="h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full mt-1 w-8 group-hover:w-16 transition-all duration-500" />
                     </div>
                   </div>
+                  <Badge variant="outline" className="bg-orange-50 dark:bg-gray-700 border-orange-200 dark:border-gray-600 text-orange-600 dark:text-orange-400">
+                    {category.skills.length} skills
+                  </Badge>
+                </div>
 
-                  <div className="space-y-8">
-                    {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex} className="space-y-3 group/skill">
-                        <div className="flex items-center justify-between">
-                          <span className="text-black font-medium group-hover/skill:text-gray-800 transition-colors duration-500 transform group-hover/skill:scale-105">{skill.name}</span>
+                {/* Skills List - Fixed spacing and layout */}
+                <div className="space-y-6">
+                  {category.skills.map((skill, skillIndex) => {
+                    const proficiencyConfig = getProficiencyConfig(skill.proficiency);
+                    
+                    return (
+                      <div 
+                        key={skillIndex} 
+                        className="group/skill cursor-pointer"
+                        onMouseEnter={() => setHoveredSkill(`${categoryIndex}-${skillIndex}`)}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                      >
+                        {/* Skill Header - Fixed overlapping */}
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2 flex-1 min-w-0">
+                            <span className="font-semibold text-gray-900 dark:text-white group-hover/skill:text-orange-600 dark:group-hover/skill:text-orange-400 transition-colors duration-300 truncate">
+                              {skill.name}
+                            </span>
+                            {skill.trending && (
+                              <div className="flex items-center gap-1 px-2 py-0.5 bg-green-500 rounded-full flex-shrink-0">
+                                <TrendingUp className="w-2.5 h-2.5 text-white" />
+                                <span className="text-xs text-white font-medium">Trending</span>
+                              </div>
+                            )}
+                          </div>
                           <Badge 
                             variant="outline" 
-                            className={`${getProficiencyColor(skill.proficiency)} border transition-all duration-500 transform group-hover/skill:scale-110`}
+                            className={`${proficiencyConfig.color} border transition-all duration-500 transform group-hover/skill:scale-105 flex items-center gap-1 flex-shrink-0`}
                           >
-                            {skill.proficiency}
+                            {proficiencyConfig.icon}
+                            <span className="text-xs">{skill.proficiency}</span>
                           </Badge>
                         </div>
-                        
-                        <div className="skill-bar bg-orange-100 group-hover:bg-orange-200 transition-all duration-500 relative overflow-hidden h-3 rounded-full">
-                          <div 
-                            className={`h-full bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 rounded-full transition-all duration-1000 ease-out relative overflow-hidden group-hover:from-orange-600 group-hover:via-orange-500 group-hover:to-orange-700 ${
-                              visibleBars.has(category.title) ? '' : 'w-0'
-                            }`}
-                            style={{
-                              width: visibleBars.has(category.title) ? `${skill.level}%` : '0%',
-                              transitionDelay: `${skillIndex * 100}ms`
-                            }}
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1500"></div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center space-x-2">
-                            <Zap className="w-3 h-3 text-orange-500 group-hover/skill:text-orange-600 transition-colors duration-300" />
-                            <span className="text-xs text-gray-500 group-hover/skill:text-gray-600 transition-colors duration-300">Proficiency</span>
-                          </div>
-                          <span className="text-sm text-gray-600 group-hover/skill:text-gray-700 transition-colors duration-500 transform group-hover/skill:scale-110 inline-block font-medium">{skill.level}%</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
 
-          <div className="mt-20 text-center">
-            <div className="inline-flex items-center justify-center p-8 bg-gradient-to-r from-orange-50 to-white rounded-2xl border border-orange-200 backdrop-blur-sm">
-              <div>
-                <h3 className="text-xl font-semibold text-black mb-2">Continuous Learning</h3>
-                <p className="text-gray-600 max-w-2xl">
-                  I'm constantly expanding my skill set and staying updated with the latest technologies and industry best practices
-                </p>
-              </div>
+                        {/* Percentage - Separate line to avoid overlap */}
+                        <div className="flex justify-between items-center mb-3">
+                          <span className="text-xs text-gray-500 dark:text-gray-400">Proficiency Level</span>
+                          <span className="text-sm font-bold text-orange-600 dark:text-orange-400 group-hover/skill:text-orange-700 dark:group-hover/skill:text-orange-300 transition-colors duration-300">
+                            {skill.level}%
+                          </span>
+                        </div>
+
+                        {/* Progress Bar */}
+                        <div className="relative mb-4">
+                          <div className="h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                            <div 
+                              className={`h-full bg-gradient-to-r ${proficiencyConfig.gradient} rounded-full transition-all duration-1000 ease-out relative overflow-hidden group-hover/skill:shadow-lg`}
+                              style={{
+                                width: visibleBars.has(category.title) ? `${skill.level}%` : '0%',
+                                transitionDelay: `${skillIndex * 100}ms`
+                              }}
+                            >
+                              {/* Shine effect */}
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-100%] group-hover/skill:translate-x-[100%] transition-transform duration-1000" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Expandable Description - Fixed animation */}
+                        {hoveredSkill === `${categoryIndex}-${skillIndex}` && (
+                          <div className="mt-3 p-3 bg-orange-50 dark:bg-gray-700 rounded-lg border-l-4 border-orange-500 animate-fade-in">
+                            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                              {skill.description}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-20 text-center">
+          <div className="inline-flex items-center justify-center p-8 bg-white dark:bg-gray-800 rounded-2xl border border-orange-200 dark:border-gray-600 shadow-xl hover:scale-105 transition-all duration-500 group max-w-2xl">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-500">
+                Continuous Learning & Innovation
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Staying at the forefront of technology through continuous learning, experimentation, 
+                and contributing to open-source projects.
+              </p>
             </div>
           </div>
         </div>
-        
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent"></div>
-      </section>
-
-      <div className="h-8 bg-gradient-to-b from-white to-orange-50 relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center opacity-20">
-          <div className="w-96 h-px bg-gradient-to-r from-transparent via-orange-400/40 to-transparent"></div>
-        </div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="w-2 h-2 bg-orange-400/60 rounded-full animate-pulse"></div>
-        </div>
       </div>
-    </>
+    </section>
   );
 };
 
