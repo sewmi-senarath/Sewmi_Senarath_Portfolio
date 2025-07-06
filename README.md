@@ -1,4 +1,4 @@
-## 🚀 Sewmi Methsadi Senarath - Personal Portfolio
+## 🚀 Sewmi Methsadi Senarath - Personal Portfolio - https://sewmi-senarath-portfolio.vercel.app/
 A modern, responsive personal portfolio website showcasing my journey as a Software Engineering Undergraduate, Full-Stack Developer, and DevOps Enthusiast. Built with cutting-edge web technologies
 
 ## 🛠️ Tech Stack
@@ -19,5 +19,5 @@ A modern, responsive personal portfolio website showcasing my journey as a Softw
 
 ## Deployment & Hosting
 
-🌐 Vercel/Netlify - Fast, reliable hosting
+🌐 Vercel
 🔄 GitHub Actions - Automated CI/CD pipeline
