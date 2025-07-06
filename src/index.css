@@ -185,7 +185,45 @@ html, body {
   }
 }
 
-/* Hide scrollbar for horizontal scroll containers */
+/* Responsive scrollbar - Hide on mobile, show styled scrollbar on desktop */
+@media (max-width: 767px) {
+  .scrollbar-hide-mobile {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide-mobile::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* On desktop/tablet (768px and above), show orange-themed scrollbars */
+@media (min-width: 768px) {
+  .scrollbar-hide-mobile {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-hide-mobile::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+
+  .scrollbar-hide-mobile::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+
+  .scrollbar-hide-mobile::-webkit-scrollbar-thumb {
+    background: #f97316;
+    border-radius: 3px;
+  }
+
+  .scrollbar-hide-mobile::-webkit-scrollbar-thumb:hover {
+    background: #ea580c;
+  }
+}
+
+/* Keep the original scrollbar-hide class for other uses if needed */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

@@ -97,22 +97,22 @@
 //   const getProficiencyConfig = (proficiency) => {
 //     const configs = {
 //       'Expert': { 
-//         color: 'bg-emerald-500/20 text-emerald-700 border-emerald-500/30 hover:bg-emerald-400/30 dark:bg-emerald-500/20 dark:text-emerald-400 dark:border-emerald-500/30', 
+//         color: 'bg-emerald-500/20 text-emerald-700 border-emerald-500/30 hover:bg-emerald-400/30', 
 //         icon: <Award className="w-3 h-3" />,
 //         gradient: 'from-emerald-400 to-emerald-600'
 //       },
 //       'Proficient': { 
-//         color: 'bg-orange-500/20 text-orange-700 border-orange-500/30 hover:bg-orange-400/30 dark:bg-orange-500/20 dark:text-orange-400 dark:border-orange-500/30', 
+//         color: 'bg-orange-500/20 text-orange-700 border-orange-500/30 hover:bg-orange-400/30', 
 //         icon: <Target className="w-3 h-3" />,
 //         gradient: 'from-orange-400 to-orange-600'
 //       },
 //       'Intermediate': { 
-//         color: 'bg-yellow-500/20 text-yellow-700 border-yellow-500/30 hover:bg-yellow-400/30 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30', 
+//         color: 'bg-yellow-500/20 text-yellow-700 border-yellow-500/30 hover:bg-yellow-400/30', 
 //         icon: <TrendingUp className="w-3 h-3" />,
 //         gradient: 'from-yellow-400 to-yellow-600'
 //       },
 //       'Beginner': { 
-//         color: 'bg-blue-500/20 text-blue-700 border-blue-500/30 hover:bg-blue-400/30 dark:bg-blue-500/20 dark:text-blue-400 dark:border-blue-500/30', 
+//         color: 'bg-blue-500/20 text-blue-700 border-blue-500/30 hover:bg-blue-400/30', 
 //         icon: <Star className="w-3 h-3" />,
 //         gradient: 'from-blue-400 to-blue-600'
 //       }
@@ -139,13 +139,13 @@
 //   return (
 //     <section 
 //       id="skills" 
-//       className="py-12 sm:py-20 bg-gradient-to-b from-orange-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden"
+//       className="py-12 sm:py-20 bg-gradient-to-b from-orange-50 to-white relative overflow-hidden"
 //     >
 //       {/* Background elements - Mobile responsive */}
 //       <div className="absolute inset-0 opacity-30">
-//         <div className="absolute top-20 right-10 w-32 sm:w-64 h-32 sm:h-64 bg-orange-200/20 dark:bg-orange-500/10 rounded-full blur-3xl"></div>
-//         <div className="absolute bottom-20 left-10 w-48 sm:w-80 h-48 sm:h-80 bg-orange-100/30 dark:bg-orange-500/5 rounded-full blur-3xl"></div>
-//         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-orange-50/40 dark:bg-orange-500/5 rounded-full blur-3xl"></div>
+//         <div className="absolute top-20 right-10 w-32 sm:w-64 h-32 sm:h-64 bg-orange-200/20 rounded-full blur-3xl"></div>
+//         <div className="absolute bottom-20 left-10 w-48 sm:w-80 h-48 sm:h-80 bg-orange-100/30 rounded-full blur-3xl"></div>
+//         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-orange-50/40 rounded-full blur-3xl"></div>
 //       </div>
       
 //       <div className="container mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
@@ -157,13 +157,13 @@
 //             <div className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-orange-400"></div>
 //           </div>
           
-//           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white mb-4 sm:mb-6 transition-all duration-500">
+//           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4 sm:mb-6 transition-all duration-500">
 //             Technical Skills
 //           </h2>
           
 //           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto mb-4 sm:mb-8 transition-all duration-500"></div>
 
-//           <p className="text-base sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4 sm:mb-8 px-4">
+//           <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-4 sm:mb-8 px-4">
 //             A comprehensive overview of my technical expertise and proficiency levels across various technologies
 //           </p>
 
@@ -176,7 +176,7 @@
 //                 placeholder="Search technologies..."
 //                 value={searchTerm}
 //                 onChange={(e) => setSearchTerm(e.target.value)}
-//                 className="pl-8 sm:pl-10 bg-white dark:bg-gray-800 border-orange-200 dark:border-gray-600 rounded-xl text-sm sm:text-base"
+//                 className="pl-8 sm:pl-10 bg-white border-orange-200 rounded-xl text-sm sm:text-base"
 //               />
 //             </div>
 //             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
@@ -189,7 +189,7 @@
 //                   className={`whitespace-nowrap transition-all duration-300 text-xs sm:text-sm px-3 py-2 flex-shrink-0 ${
 //                     selectedCategory === category
 //                       ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg'
-//                       : 'bg-white dark:bg-gray-800 border-orange-200 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-gray-700'
+//                       : 'bg-white border-orange-200 hover:bg-orange-50'
 //                   }`}
 //                 >
 //                   <Filter className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
@@ -206,13 +206,13 @@
 //             <Card 
 //               key={categoryIndex}
 //               data-category={category.title}
-//               className="group relative overflow-hidden bg-white dark:bg-gray-800 border-orange-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 transition-all duration-500 hover:shadow-xl hover:shadow-orange-500/20 transform hover:scale-105 shadow-lg"
+//               className="group relative overflow-hidden bg-white border-orange-200 hover:border-orange-300 transition-all duration-500 hover:shadow-xl hover:shadow-orange-500/20 transform hover:scale-105 shadow-lg"
 //               style={{
 //                 animationDelay: `${categoryIndex * 150}ms`
 //               }}
 //             >
 //               {/* Subtle hover overlay */}
-//               <div className="absolute inset-0 bg-gradient-to-r from-orange-100/0 via-orange-50/50 to-orange-100/0 dark:from-orange-500/0 dark:via-orange-500/10 dark:to-orange-500/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+//               <div className="absolute inset-0 bg-gradient-to-r from-orange-100/0 via-orange-50/50 to-orange-100/0 opacity-0 group-hover:opacity-100 transition-all duration-500" />
               
 //               <CardContent className="p-4 sm:p-6 lg:p-8 relative z-10">
 //                 {/* Category Header - Mobile responsive */}
@@ -222,13 +222,13 @@
 //                       <span className="text-lg sm:text-2xl filter drop-shadow-sm">{category.icon}</span>
 //                     </div>
 //                     <div>
-//                       <h3 className="text-base sm:text-xl font-bold text-gray-900 dark:text-white transition-colors duration-500">
+//                       <h3 className="text-base sm:text-xl font-bold text-gray-900 transition-colors duration-500">
 //                         {category.title}
 //                       </h3>
 //                       <div className="h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full mt-1 w-6 sm:w-8 group-hover:w-12 sm:group-hover:w-16 transition-all duration-500" />
 //                     </div>
 //                   </div>
-//                   <Badge variant="outline" className="bg-orange-50 dark:bg-gray-700 border-orange-200 dark:border-gray-600 text-orange-600 dark:text-orange-400 text-xs sm:text-sm w-fit">
+//                   <Badge variant="outline" className="bg-orange-50 border-orange-200 text-orange-600 text-xs sm:text-sm w-fit">
 //                     {category.skills.length} skills
 //                   </Badge>
 //                 </div>
@@ -248,7 +248,7 @@
 //                         {/* Skill Header - Mobile layout */}
 //                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
 //                           <div className="flex items-center gap-2 flex-1 min-w-0">
-//                             <span className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white group-hover/skill:text-orange-600 dark:group-hover/skill:text-orange-400 transition-colors duration-300 truncate">
+//                             <span className="font-semibold text-sm sm:text-base text-gray-900 group-hover/skill:text-orange-600 transition-colors duration-300 truncate">
 //                               {skill.name}
 //                             </span>
 //                             {skill.trending && (
@@ -270,14 +270,14 @@
 
 //                         {/* Percentage and Progress Bar */}
 //                         <div className="flex justify-between items-center mb-2">
-//                           <span className="text-xs text-gray-500 dark:text-gray-400">Level</span>
-//                           <span className="text-sm font-bold text-orange-600 dark:text-orange-400 group-hover/skill:text-orange-700 dark:group-hover/skill:text-orange-300 transition-colors duration-300">
+//                           <span className="text-xs text-gray-500">Level</span>
+//                           <span className="text-sm font-bold text-orange-600 group-hover/skill:text-orange-700 transition-colors duration-300">
 //                             {skill.level}%
 //                           </span>
 //                         </div>
 
 //                         <div className="relative mb-3">
-//                           <div className="h-2 sm:h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+//                           <div className="h-2 sm:h-2.5 bg-gray-200 rounded-full overflow-hidden shadow-inner">
 //                             <div 
 //                               className={`h-full bg-gradient-to-r ${proficiencyConfig.gradient} rounded-full transition-all duration-1000 ease-out relative overflow-hidden group-hover/skill:shadow-lg`}
 //                               style={{
@@ -292,8 +292,8 @@
 
 //                         {/* Description - Mobile responsive */}
 //                         {hoveredSkill === `${categoryIndex}-${skillIndex}` && (
-//                           <div className="mt-3 p-3 bg-orange-50 dark:bg-gray-700 rounded-lg border-l-4 border-orange-500 animate-fade-in">
-//                             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+//                           <div className="mt-3 p-3 bg-orange-50 rounded-lg border-l-4 border-orange-500 animate-fade-in">
+//                             <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
 //                               {skill.description}
 //                             </p>
 //                           </div>
@@ -309,12 +309,12 @@
 
 //         {/* Bottom CTA - Mobile responsive */}
 //         <div className="mt-12 sm:mt-20 text-center px-4">
-//           <div className="inline-flex items-center justify-center p-4 sm:p-8 bg-white dark:bg-gray-800 rounded-2xl border border-orange-200 dark:border-gray-600 shadow-xl hover:scale-105 transition-all duration-500 group max-w-2xl w-full">
+//           <div className="inline-flex items-center justify-center p-4 sm:p-8 bg-white rounded-2xl border border-orange-200 shadow-xl hover:scale-105 transition-all duration-500 group max-w-2xl w-full">
 //             <div className="text-center">
-//               <h3 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-500">
+//               <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-orange-600 transition-colors duration-500">
 //                 Continuous Learning & Innovation
 //               </h3>
-//               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+//               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
 //                 Staying at the forefront of technology through continuous learning, experimentation, 
 //                 and contributing to open-source projects.
 //               </p>
@@ -509,7 +509,7 @@ const Skills = () => {
                 className="pl-8 sm:pl-10 bg-white border-orange-200 rounded-xl text-sm sm:text-base"
               />
             </div>
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide-mobile">
               {categories.map(category => (
                 <Button
                   key={category}
