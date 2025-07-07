@@ -174,12 +174,12 @@ const Hero = () => {
         </div>
 
         {/* Enhanced Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 animate-bounce">
           <button 
             onClick={() => scrollToSection('#about')}
             className="text-gray-600 hover:text-orange-500 transition-all duration-500 hover:scale-110 p-2 rounded-full hover:bg-orange-100"
           >
-            <ArrowDown className="w-6 h-15" />
+            <ArrowDown className="w-6 h-6" />
           </button>
         </div>
       </div>
