@@ -96,6 +96,7 @@ const Hero = () => {
                   src="https://i.postimg.cc/WbZZkPws/me.jpg" 
                   alt="Sewmi Methsadi Senarath"
                   className="w-full h-full object-cover rounded-full"
+                  style={{ objectPosition: 'center 68%' }}
                 />
               </div>
             </div>
