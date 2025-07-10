@@ -20,9 +20,9 @@ const Skills = () => {
         { name: 'JavaScript', level: 88, proficiency: 'Expert', trending: true, description: 'ES6+, TypeScript, Node.js, React, Vue.js' },
         { name: 'PHP', level: 75, proficiency: 'Proficient', trending: false, description: 'Laravel, Symfony, REST APIs, web development' },
         { name: 'Kotlin', level: 80, proficiency: 'Proficient', trending: true, description: 'Android development, coroutines, modern syntax' },
-        { name: 'Python', level: 40, proficiency: 'Intermediate', trending: true, description: 'Data analysis, automation, Django basics' },
-        { name: 'Dart', level: 35, proficiency: 'Beginner', trending: true, description: 'Flutter development, cross-platform mobile apps' },
-        { name: 'Golang', level: 65, proficiency: 'Intermediate', trending: true, description: 'Microservices, concurrent programming, REST APIs' },
+        //{ name: 'Python', level: 40, proficiency: 'Intermediate', trending: true, description: 'Data analysis, automation, Django basics' },
+        //{ name: 'Dart', level: 35, proficiency: 'Beginner', trending: true, description: 'Flutter development, cross-platform mobile apps' },
+        { name: 'Golang', level: 35, proficiency: 'Beginner', trending: true, description: 'Microservices, concurrent programming, REST APIs' },
       ]
     },
     {
@@ -41,7 +41,7 @@ const Skills = () => {
       icon: '📱',
       skills: [
         { name: 'Android', level: 40, proficiency: 'Intermediate', trending: true, description: 'Native Android, Kotlin, Material Design' },
-        { name: 'Flutter', level: 35, proficiency: 'Beginner', trending: true, description: 'Cross-platform development, Dart, widget system' },
+        //{ name: 'Flutter', level: 35, proficiency: 'Beginner', trending: true, description: 'Cross-platform development, Dart, widget system' },
       ]
     },
     {
